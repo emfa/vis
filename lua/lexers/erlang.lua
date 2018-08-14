@@ -25,7 +25,7 @@ local atom_pat = (l.lower * (l.alnum + '_')^0) + l.delimited_range("'")
 local atom = token(l.LABEL, atom_pat)
 
 -- Functions.
-local func = token(l.FUNCTION, atom_pat * #l.delimited_range("()", false, false, true))
+local func = token(l.FUNCTION, atom_pat * S(" \n")^0 * #l.delimited_range("()", false, false, true))
 
 -- Keywords.
 local keyword = token(l.KEYWORD, word_match{
